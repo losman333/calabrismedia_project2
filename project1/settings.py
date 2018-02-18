@@ -101,10 +101,12 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'sekizai.context_processors.sekizai',
                 'django.template.context_processors.static',
-                'cms.context_processors.cms_settings'
+                'cms.context_processors.cms_settings',
+                'aldryn_boilerplates.context_processors.boilerplate'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
+                'aldryn_boilerplates.template_loaders.AppDirectoriesLoader',
                 'django.template.loaders.app_directories.Loader',
                 'django.template.loaders.eggs.Loader'
             ],
@@ -129,12 +131,15 @@ MIDDLEWARE_CLASSES = (
 )
 
 INSTALLED_APPS = (
+    
     'djangocms_style',
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
     'djangocms_column',
     'djangocms_link',
+    'djangocms_file',
+    'djangocms_picture',
     'storages',
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
@@ -149,6 +154,7 @@ INSTALLED_APPS = (
     'aldryn_newsblog',
     'aldryn_people',
     'aldryn_translation_tools',
+    'aldryn_gallery',
     'parler',
     'sortedm2m',
     'taggit',
@@ -157,7 +163,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
 
 
-
+    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -199,7 +205,12 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ## Customize this
+    ('home.html', 'home'),
+    ('about.html', 'about'),
+    ('contact.html', 'contact'),
+    ('our_work.html', 'our work'),
     ('fullwidth.html', 'Fullwidth'),
+    ('index-1.html', 'indi'),
     ('sidebar_left.html', 'Sidebar Left'),
     ('sidebar_right.html', 'Sidebar Right')
 )
@@ -223,6 +234,8 @@ MIGRATION_MODULES = {
     
 }
 
+THUMBNAIL_HIGH_RESOLUTION = True
+
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',
@@ -236,16 +249,16 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
 MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+
 
 
 db_from_env = dj_database_url.config(conn_max_age=500)
