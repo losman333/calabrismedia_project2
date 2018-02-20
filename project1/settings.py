@@ -155,6 +155,12 @@ INSTALLED_APPS = (
     'aldryn_people',
     'aldryn_translation_tools',
     'aldryn_gallery',
+    'absolute',
+    'aldryn_forms',
+    'aldryn_forms.contrib.email_notifications',
+    'captcha',
+    'emailit',
+                 
     'parler',
     'sortedm2m',
     'taggit',
