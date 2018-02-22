@@ -147,7 +147,6 @@ INSTALLED_APPS = (
     'menus',
     'sekizai',
     'treebeard',
-
     'aldryn_apphooks_config',
     'aldryn_categories',
     'aldryn_common',
@@ -155,6 +154,7 @@ INSTALLED_APPS = (
     'aldryn_people',
     'aldryn_translation_tools',
     'aldryn_gallery',
+    'aldryn_background_image',
     'absolute',
     'aldryn_forms',
     'aldryn_forms.contrib.email_notifications',
@@ -255,14 +255,6 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 
 

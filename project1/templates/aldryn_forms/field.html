@@ -1,6 +1,9 @@
 {% load i18n aldryn_forms_tags %}
 
 {% if field %}
+
+<div class="grid-x grid-padding-x ">
+
     {% comment %}
     {# available conditions #}
     {% if field.field.required %} required{% endif %}
@@ -10,7 +13,9 @@
     <label for="{{ field.id_for_label }}">
         {{ field.label }}
         {% if field.field.required %}
+       
             <abbr title="{% trans "Required field" %}">*</abbr>
+     
         {% endif %}
     </label>
 
@@ -25,4 +30,5 @@
     {% if field.help_text %}
         <p>{{ field.help_text }}</p>
     {% endif %}
+       </div>
 {% endif %}
